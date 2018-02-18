@@ -1,6 +1,8 @@
-Волков Денис. В моем случае n = 4.
+# Практика. RIP
 
-На первом этапе я собрал сеть как на картинке. Подключил нужную плату(**NM-1FE-TX**) на роутерах. Настроил IP адреса на комьютерах PC1 и PC2.![Screenshot_1](images\Screenshot_1.png)
+Студент ФТ-201 Волков Денис. В моем случае, n = 4.
+
+На первом этапе я собрал сеть как на картинке. Подключил нужную плату(**NM-1FE-TX**) на роутерах. Настроил IP адреса на комьютерах PC1 и PC2.![Screenshot_1](images/Screenshot_1.png)
 
 Теперь поднимем интерфейсы на Rounter1.
 
@@ -26,7 +28,7 @@ Router(config-if)#exit
 
  Стало теперь так
 
-![Screenshot_2](images\Screenshot_2.png)
+![Screenshot_2](images/Screenshot_2.png)
 
 Аналогичным образом настроим Rounter2 и Rounte3 согласно таблице (маршрутизации?)
 
@@ -68,11 +70,11 @@ Router(config-if)#exit
 
 Теперь имеем следующее:
 
-![Screenshot_3](images\Screenshot_3.png)
+![Screenshot_3](images/Screenshot_3.png)
 
 На этом этапе я увидел, что неправильно выбрал IP-адреса для компьютеров. Вернул им старые названия. Задал IP-адреса для серверов.
 
-![Screenshot_4](images\Screenshot_4.png)
+![Screenshot_4](images/Screenshot_4.png)
 
 Шлюз по умолчанию для PC0, PC1 (устанавливаю на Switch0) - Router1.(http://www.techexams.net/forums/ccna-ccent/50919-default-gateway-packet-tracer-switch.html)
 
