@@ -176,3 +176,37 @@ Vlan1                  unassigned      YES unset  administratively down down
 ```
 
 Сохранил настройки каждого маршрутизатора командой `w m`.
+
+
+
+UPDATE:
+
+мне подсказали, что у меня неправильно был настроен default-gateway и ip-адреса у Router 1
+
+```
+Router(config)#int fa0/0
+Router(config-if)#ip address 10.4.1.1 255.255.255.0
+Router(config-if)#no shutdown
+Router(config-if)#exit
+
+Router(config-if)#int fa0/1
+Router(config-if)#ip address 192.168.1.1 255.255.255.0
+Router(config-if)#no shutdown 
+Router(config-if)#exit
+
+Router(config)#int fa1/0
+Router(config-if)#ip address 192.168.10.1 255.255.255.252
+Router(config-if)#no shutdown
+Router(config-if)#exit 
+```
+
+```
+Switch(config)#ip default-gateway 10.4.1.1
+```
+
+
+
+
+
+
+
