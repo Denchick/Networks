@@ -7,16 +7,13 @@ import logging
 
 __version__ = '1.1'
 __author__ = 'Volkov Denis'
-__email__ = 'denchick1997@mail.ru'
+__group__ = 'FIIT-201'
 
 
 def create_parser():
     """ Разбор аргументов командной строки """
     parser = argparse.ArgumentParser(
         description=""" Сервер точного времени, который «врет» на заданное число секунд. """)
-    parser.add_argument(
-        '-s', '--server', type=str, default='',
-        help=""" Сервер, у которого этот сервер узнает точное время""")
     parser.add_argument(
         '-t', '--time-shift', type=int, default=0,
         help=""" Смещение времени, на которое "врет" сервер """)
@@ -34,9 +31,7 @@ if __name__ == '__main__':
         print(__version__)
         sys.exit()
 
-    logging.debug("Starting UDP server")
-    # One protocol instance will be created to serve all client requests
-    server = SNTPServer('localhost', 123)
+    server = SNTPServer('localhost', 123, args.time_shift)
     try:
         server.start()
     except KeyboardInterrupt:

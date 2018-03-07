@@ -1,9 +1,4 @@
 import socket
-import struct
-from datetime import datetime
-import random
-import sys
-import asyncio
 import logging
 from architecture.message_format import MessageFormat
 
@@ -30,6 +25,7 @@ class SNTPServer:
 
     def start(self):
         self.create_connection()
+        logging.debug("Starting SNTP server")
         while True:
             try:
                 data, address = self.socket.recvfrom(1024)
