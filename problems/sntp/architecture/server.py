@@ -18,12 +18,10 @@ class SNTPServer:
         self.time_shift = time_shift
 
     def create_connection(self):
-        try:
-            self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            self.socket.settimeout(1 / 60)
-            self.socket.bind(('', 123))
-            logging.info('Connection is established')
-        except
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.socket.settimeout(1 / 60)
+        self.socket.bind(('', 123))
+        logging.info('Connection is established')
 
     def start(self):
         self.create_connection()

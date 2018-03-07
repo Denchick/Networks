@@ -6,11 +6,10 @@
 
 import socket
 import struct
-import sys
 import time
 
 NTP_SERVER = "localhost"
-TIME1970 = 2208988800
+EPOCH = 2208988800
 
 def sntp_client():
     client = socket.socket( socket.AF_INET, socket.SOCK_DGRAM )
@@ -20,7 +19,7 @@ def sntp_client():
     if data:
         print ('Response received from:', address)
     t = struct.unpack( '!12I', data )[10]
-    t -= TIME1970
+    t -= EPOCH
     print ('\tTime=%s' % time.ctime(t))
 
 
