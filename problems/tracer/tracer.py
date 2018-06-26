@@ -28,7 +28,7 @@ class ASTracer:
 
     def tracert(self):
         print('Start trace routing.')
-        p = subprocess.Popen(['tracert', self.dst_ip], stdout=subprocess.PIPE)
+        p = subprocess.Popen(['tracert', '-d', self.dst_ip], stdout=subprocess.PIPE)
         while True:
             line = p.stdout.readline()
             if not line:
@@ -41,6 +41,7 @@ class ASTracer:
             if match:
                 ip = match.group(0)
                 try:
+                    ip = ip.replace('-', '.')
                     obj = ipwhois.IPWhois(ip)
                     result = obj.lookup_rdap()
                     print(f"{query}\t AS{result['asn']} \t {result['asn_description']} \t {result['asn_registry']}")

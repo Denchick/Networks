@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -68,12 +69,19 @@ namespace PortScanner
             log.InfoFormat("=================\n\rStart scanning");
             CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
             CancellationToken token = cancelTokenSource.Token;
+
+
+            var kek = Enumerable.Range(startPort, endPort)
+                .Select(p => ScanTcpPortAsync(ipdAddress, p, token));
+            var kek2 = Enumerable.Range(startPort, endPort)
+                .Select(p => ScanUdpPortAsync(ipdAddress, p, token));
+
             for (var port = startPort; port <= endPort; port++)
             {
                 var output = new StringBuilder($"{port}: ");
                 var tcpPortInfo = await ScanTcpPortAsync(ipdAddress, port, token);
-                output.Append($"TCP {tcpPortInfo.Status}, ");
                 var udpPortInfo = await ScanUdpPortAsync(ipdAddress, port, token);
+                output.Append($"TCP {tcpPortInfo.Status}, ");
                 output.Append($"UDP {udpPortInfo.Status}");
                 if (tcpPortInfo.Status == PortStatus.Open || udpPortInfo.Status == PortStatus.Open)
                     Console.WriteLine(output);

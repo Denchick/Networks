@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import argparse
-import asyncio
 import sys
 from architecture.server import SNTPServer
 import logging
